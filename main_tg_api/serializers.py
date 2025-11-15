@@ -3,7 +3,7 @@ from .models import BotUsers, FeedbackForAdmin
 
 # bot users
 class BotUsersSerializer(serializers.ModelSerializer):
-    clean_username = serializers.CharField(source="clean_username", read_only=True)
+    clean_username = serializers.CharField(read_only=True)  
     full_info = serializers.SerializerMethodField()
 
     class Meta:
