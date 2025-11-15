@@ -9,10 +9,6 @@ from .serializers import (
     FeedbackCreateSerializer
 )
 
-
-# ======================================
-#          BOT USERS LIST + CREATE
-# ======================================
 class BotUsersListCreate(APIView):
     def get(self, request):
         users = BotUsers.objects.all().order_by("-created_at")
@@ -36,9 +32,6 @@ class BotUsersListCreate(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# ======================================
-#      BOT USER RETRIEVE / UPDATE / DELETE
-# ======================================
 class BotUsersDetail(APIView):
     def get_object(self, pk):
         try:
@@ -75,9 +68,6 @@ class BotUsersDetail(APIView):
         return Response(status=204)
 
 
-# ======================================
-#        FEEDBACK LIST + CREATE
-# ======================================
 class FeedbackListCreate(APIView):
     def get(self, request):
         feedbacks = FeedbackForAdmin.objects.all().order_by("-created_at")
@@ -102,9 +92,6 @@ class FeedbackListCreate(APIView):
         return Response(serializer.errors, status=400)
 
 
-# ======================================
-#      FEEDBACK RETRIEVE + DELETE
-# ======================================
 class FeedbackDetail(APIView):
     def get_object(self, pk):
         try:
