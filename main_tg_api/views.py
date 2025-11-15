@@ -20,7 +20,7 @@ class BotUsersListCreate(APIView):
 
         if BotUsers.objects.filter(user_id=user_id).exists():
             return Response(
-                {"error": "Bu user allaqachon mavjud."},
+                {"error": "This user already exist!"},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
@@ -42,7 +42,7 @@ class BotUsersDetail(APIView):
     def get(self, request, pk):
         user = self.get_object(pk)
         if not user:
-            return Response({"error": "User topilmadi"}, status=404)
+            return Response({"error": "User not found"}, status=404)
 
         serializer = BotUsersSerializer(user)
         return Response(serializer.data)
@@ -50,7 +50,7 @@ class BotUsersDetail(APIView):
     def put(self, request, pk):
         user = self.get_object(pk)
         if not user:
-            return Response({"error": "User topilmadi"}, status=404)
+            return Response({"error": "User not found"}, status=404)
 
         serializer = BotUsersSerializer(user, data=request.data, partial=True)
         if serializer.is_valid():
@@ -62,7 +62,7 @@ class BotUsersDetail(APIView):
     def delete(self, request, pk):
         user = self.get_object(pk)
         if not user:
-            return Response({"error": "User topilmadi"}, status=404)
+            return Response({"error": "User not found"}, status=404)
 
         user.delete()
         return Response(status=204)
@@ -82,7 +82,7 @@ class FeedbackListCreate(APIView):
 
             if not BotUsers.objects.filter(id=user.id).exists():
                 return Response(
-                    {"error": "Bunday user mavjud emas"},
+                    {"error": "This user already exist!"},
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
@@ -102,7 +102,7 @@ class FeedbackDetail(APIView):
     def get(self, request, pk):
         fb = self.get_object(pk)
         if not fb:
-            return Response({"error": "Feedback topilmadi"}, status=404)
+            return Response({"error": "No Feedback!"}, status=404)
 
         serializer = FeedbackSerializer(fb)
         return Response(serializer.data)
@@ -110,7 +110,7 @@ class FeedbackDetail(APIView):
     def delete(self, request, pk):
         fb = self.get_object(pk)
         if not fb:
-            return Response({"error": "Feedback topilmadi"}, status=404)
+            return Response({"error": "No Feedback!"}, status=404)
 
         fb.delete()
         return Response(status=204)
