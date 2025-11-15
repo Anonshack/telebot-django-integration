@@ -13,11 +13,13 @@ import sys
 sys.path.append("/Users/qudratbek/PycharmProjects/telebot-django-integration")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CONF.settings")
 django.setup()
+from dotenv import load_dotenv
 
 from main_tg_api.models import BotUsers, FeedbackForAdmin
 from buttons import main_feedback_button, feedback_buttons
+load_dotenv()
 
-TOKEN = "8055455117:AAG84ka_yBywIK7HpcuOpqSp9qu7oooRuHc"
+TOKEN = os.environ.get('TOKEN')
 BASE_URL = "http://127.0.0.1:9222/api/"
 FEEDBACKS_ENDPOINT = "feedbacks/"
 
