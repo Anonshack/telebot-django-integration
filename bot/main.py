@@ -20,7 +20,7 @@ from buttons import main_feedback_button, feedback_buttons
 load_dotenv()
 
 TOKEN = os.environ.get('TOKEN')
-BASE_URL = "http://127.0.0.1:9222/api/"
+BASE_URL = "http://127.0.0.1:8000/api/"
 FEEDBACKS_ENDPOINT = "feedbacks/"
 
 storage = MemoryStorage()
